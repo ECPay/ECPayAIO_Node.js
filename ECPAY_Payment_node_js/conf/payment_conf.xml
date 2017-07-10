@@ -1,0 +1,28 @@
+<?xml  version="1.0" encoding="utf-8"?>
+<Conf>
+    <OperatingMode>Test</OperatingMode> <!--Test or Production-->
+    <MercProfile>Stage_Account</MercProfile>
+    <IsProjectContractor>N</IsProjectContractor>
+    
+    <MerchantInfo>
+        <MInfo name="Production_Account">
+            <MerchantID></MerchantID>
+            <HashKey></HashKey>
+            <HashIV></HashIV>
+        </MInfo>
+        <MInfo name="Stage_Account">
+            <MerchantID>2000132</MerchantID>
+            <HashKey>5294y06JbISpM5x9</HashKey>
+            <HashIV>v77hoKGq4kWxNNIS</HashIV>
+        </MInfo>
+    </MerchantInfo>
+    
+    <IgnorePayment>
+        <!--<Method>Credit</Method>-->
+        <!--<Method>WebATM</Method>-->
+        <!--<Method>ATM</Method>-->
+        <!--<Method>CVS</Method>-->
+        <!--<Method>BARCODE</Method>-->
+        <!--<Method>AndroidPay</Method>-->
+    </IgnorePayment>
+</Conf>

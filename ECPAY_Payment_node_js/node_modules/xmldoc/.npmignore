@@ -1,0 +1,6 @@
+# Ignore dependencies
+node_modules/
+
+# Code Coverage
+.nyc_output/
+coverage/

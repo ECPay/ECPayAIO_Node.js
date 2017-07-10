@@ -1,0 +1,626 @@
+<?xml  version="1.0" encoding="utf-8"?>
+<ECPayPayment>
+  <AioCheckOut>
+    <ServiceAddress>
+        <url type="Production">https://payment.ecpay.com.tw/Cashier/AioCheckOut/V5</url>
+        <url type="Test">https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5</url>
+    </ServiceAddress>
+    <Config>
+        <switchparam>
+            <n>ChoosePayment</n>
+            <n>InvoiceMark</n>
+        </switchparam>
+    </Config>
+    <Parameters>
+      <param  type="String"  require="1" name="MerchantID">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="MerchantTradeNo">
+        <pattern>^\w{4,20}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="MerchantTradeDate">
+        <pattern>^\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}$</pattern>
+      </param>
+      <param  type="String"  require="0" name="StoreID">
+        <pattern>^.{0,20}</pattern>
+      </param>
+      <param  type="String"  require="1" name="PaymentType">
+        <pattern>aio</pattern>
+      </param>
+      <param  type="Int"  require="1" name="TotalAmount">
+        <!-- There's a special rule when payment type is CVS. The minimal value would be 27 and maximum be 20000.
+        This rule is embedded into code and will ignore all value setting here. -->
+        <mode>GE</mode> <!--BETWEEN, GE, LE, EXCLUDE  -->
+        <maximum></maximum>
+        <minimal>1</minimal>
+      </param>
+      <param  type="String"  require="1" name="TradeDesc">
+        <pattern>^.{0,200}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="ItemName">
+        <pattern>^.{0,200}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="ReturnURL">
+        <pattern>^.{0,200}$</pattern>
+      </param>
+      <param  type="Opt"  require="1" name="ChoosePayment">
+        <option>ALL</option>
+        <option>AndroidPay</option>
+        <option>Credit</option>
+        <condparam owner="Credit">
+        <!--Reqirement checking of following credit card related sub parameter would be handled in
+        client.rb due to different credit payment type -->
+            <param type="Opt"  require="0" name="Language">
+                <option>ENG</option>
+                <option>KOR</option>
+                <option>JPN</option>
+                <option>CHI</option>
+            </param>
+            <param type="Opt"  require="0" name="BidingCard">
+                <option>1</option>
+                <option>0</option>
+            </param>
+            <param type="String"  require="0" name="MerchantMemberID">
+                <pattern>^.{0,20}$</pattern>
+            </param>
+            <param type="Opt"  require="0" name="Redeem" category="OneTime">
+                <option>Y</option>
+                <option>N</option>
+            </param>
+            <param type="Opt"  require="0" name="UnionPay" category="OneTime">
+                <option>0</option>
+                <option>1</option>
+            </param>
+            <param type="String"  require="0" name="CreditInstallment" category="Divide">
+                <pattern>^(3|6|12|18|24){1}(,3|,6|,12|,18|,24){0,4}$</pattern>
+            </param>
+            <param type="Int"  require="0" name="InstallmentAmount" category="Divide">
+                <mode>GE</mode> <!--BETWEEN, GE, LE, EXCLUDE  -->
+                <maximum></maximum>
+                <minimal>1</minimal>
+            </param>
+            <param type="Int"  require="0" name="PeriodAmount" category="Period">
+                <mode>GE</mode> <!--BETWEEN, GE, LE, EXCLUDE  -->
+                <maximum></maximum>
+                <minimal>1</minimal>
+            </param>
+            <param type="Opt"  require="0" name="PeriodType" category="Period">
+                <option>Y</option>
+                <option>M</option>
+                <option>D</option>
+            </param>
+            <param type="Int"  require="0" name="Frequency" category="Period">
+                <mode>BETWEEN</mode> <!--BETWEEN, GE, LE, EXCLUDE  -->
+                <maximum>365</maximum>
+                <minimal>1</minimal>
+            </param>
+            <param type="Int"  require="0" name="ExecTimes" category="Period">
+                <mode>BETWEEN</mode> <!--BETWEEN, GE, LE, EXCLUDE  -->
+                <maximum>999</maximum>
+                <minimal>1</minimal>
+            </param>
+            <param type="String"  require="0" name="PeriodReturnURL" category="Period">
+            	<pattern>.{0,200}</pattern>
+            </param>
+        </condparam>
+        <option>WebATM</option>
+        <option>ATM</option>
+        <condparam owner="ATM">
+            <param type="Int" require="0" name="ExpireDate">
+                <mode>BETWEEN</mode>
+                <maximum>60</maximum>
+                <minimal>1</minimal>
+            </param>
+            <param type="String"  require="0" name="PaymentInfoURL">
+                <pattern>^.{0,200}$</pattern>
+            </param>
+            <param type="String"  require="0" name="ClientRedirectURL">
+                <pattern>^.{0,200}$</pattern>
+            </param>
+        </condparam>
+        <option>CVS</option>
+        <condparam owner="CVS">
+            <param type="Int"  require="0" name="StoreExpireDate">
+                <mode>BETWEEN</mode>
+                <maximum>99</maximum>
+                <minimal>1</minimal>
+            </param>
+            <param type="String"  require="0" name="Desc_1">
+                <pattern>^.{0,20}$</pattern>
+            </param>
+            <param type="String"  require="0" name="Desc_2">
+                <pattern>^.{0,20}$</pattern>
+            </param>
+            <param type="String"  require="0" name="Desc_3">
+                <pattern>^.{0,20}$</pattern>
+            </param>
+            <param type="String"  require="0" name="Desc_4">
+                <pattern>^.{0,20}$</pattern>
+            </param>
+            <param type="String"  require="0" name="PaymentInfoURL">
+                <pattern>^.{0,200}$</pattern>
+            </param>
+            <param type="String"  require="0" name="ClientRedirectURL">
+                <pattern>^.{0,200}$</pattern>
+            </param>
+        </condparam>
+        <option>BARCODE</option>
+        <condparam owner="BARCODE">
+            <param type="Int"  require="0" name="StoreExpireDate">
+                <mode>BETWEEN</mode>
+                <maximum>99</maximum>
+                <minimal>1</minimal>
+            </param>
+            <param type="String"  require="0" name="Desc_1">
+                <pattern>^.{0,20}$</pattern>
+            </param>
+            <param type="String"  require="0" name="Desc_2">
+                <pattern>^.{0,20}$</pattern>
+            </param>
+            <param type="String"  require="0" name="Desc_3">
+                <pattern>^.{0,20}$</pattern>
+            </param>
+            <param type="String"  require="0" name="Desc_4">
+                <pattern>^.{0,20}$</pattern>
+            </param>
+            <param type="String"  require="0" name="PaymentInfoURL">
+                <pattern>^.{0,200}$</pattern>
+            </param>
+            <param type="String"  require="0" name="ClientRedirectURL">
+                <pattern>^.{0,200}$</pattern>
+            </param>
+        </condparam>
+      </param>
+      <param  type="String"  require="0" name="ClientBackURL">
+        <pattern>^.{0,200}$</pattern>
+      </param>
+      <param  type="String"  require="0" name="ItemURL">
+        <pattern>^.{0,200}$</pattern>
+      </param>
+      <param  type="String"  require="0" name="Remark">
+        <pattern>^.{0,100}$</pattern>
+      </param>
+      <param  type="DepOpt" main="ChoosePayment"  require="0" name="ChooseSubPayment">
+        <mainoption name="ATM">
+            <option>TAISHIN</option>
+            <option>ESUN</option>
+            <option>BOT</option>
+            <option>FUBON</option>
+            <option>CHINATRUST</option>
+            <option>FIRST</option>
+            <option>LAND</option>
+            <option>CATHAY</option>
+            <option>TACHONG</option>
+        </mainoption>
+        <mainoption name="WebATM">
+            <option>TAISHIN</option>
+            <option>ESUN</option>
+            <option>BOT</option>
+            <option>FUBON</option>
+            <option>CHINATRUST</option>
+            <option>FIRST</option>
+            <option>CATHAY</option>
+            <option>MEGA</option>
+            <option>LAND</option>
+            <option>TACHONG</option>
+            <option>SINOPAC</option>
+        </mainoption>
+        <mainoption name="CVS">
+            <option>CVS</option>
+            <option>OK</option>
+            <option>FAMILY</option>
+            <option>HILIFE</option>
+            <option>IBON</option>
+        </mainoption>
+        <mainoption name="BARCODE">
+            <option>BARCODE</option>
+        </mainoption>
+      </param>
+      <param type="String"  require="0" name="OrderResultURL">
+        <pattern>^.{0,200}$</pattern>
+      </param>
+      <param type="Opt"  require="0" name="NeedExtraPaidInfo">
+        <option>Y</option>
+        <option>N</option>
+      </param>
+      <param type="String"  require="0" name="DeviceSource">
+        <pattern>^.{0,200}$</pattern>
+      </param>
+      <param type="String"  require="0" name="IgnorePayment">
+        <pattern>^.{0,100}$</pattern>
+      </param>
+      <param type="String"  require="0" name="PlatformID">
+        <pattern>^(\d{7,10}|)$</pattern>
+      </param>
+      <param type="String"  require="0" name="InvoiceMark">
+        <option>Y</option>
+        <condparam owner="Y">
+            <param type="String"  require="1" name="RelateNumber">
+                <pattern>^[\w_\-#$]{0,30}$</pattern>
+            </param>
+            <param type="String"  require="1" name="CustomerID">
+                <pattern>^[\w_]{0,20}$</pattern>
+            </param>
+            <param type="String"  require="1" name="CustomerIdentifier">
+                <pattern>^(\d{8}|)$</pattern>
+            </param>
+            <param type="String"  require="1" name="CustomerName" urlencode="1">
+                <pattern>^.{0,20}$</pattern>
+            </param>
+            <param type="String"  require="1" name="CustomerAddr" urlencode="1">
+                <pattern>^.{0,200}$</pattern>
+            </param>
+            <param type="String"  require="1" name="CustomerPhone">
+                <pattern>^(\d{10,20}|)$</pattern>
+            </param>
+            <param type="String"  require="1" name="CustomerEmail" urlencode="1">
+                <pattern>^.{0,200}$</pattern>
+            </param>
+            <param type="Opt"  require="1" name="ClearanceMark">
+                <option>1</option>
+                <option>2</option>
+                <option></option>
+            </param>
+            <param type="Opt"  require="1" name="TaxType">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>9</option>
+            </param>
+            <param type="Opt"  require="1" name="CarruerType">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option></option>
+            </param>
+            <param type="String"  require="1" name="CarruerNum"> <!-- Patten of this column is defined in verification.rb???-->
+            	<pattern>.{0,16}</pattern>
+            </param>
+            <param type="Opt"  require="1" name="Donation">
+                <option>1</option>
+                <option>2</option>
+            </param>
+            <param type="String"  require="1" name="LoveCode">
+                <pattern>^([Xx]\d{2,6}|\d{3,7}|)$</pattern>
+            </param>
+            <param type="Opt"  require="1" name="Print">
+                <option>0</option>
+                <option>1</option>
+            </param>
+            <param type="String"  require="1" name="InvoiceItemName" urlencode="1">
+                <pattern>^.{0,4096}$</pattern>
+            </param>
+            <param type="String"  require="1" name="InvoiceItemCount">
+                <pattern>^[\d\|]{0,4096}$</pattern>
+            </param>
+            <param type="String"  require="1" name="InvoiceItemWord" urlencode="1">
+                <pattern>^.{0,4096}$</pattern>
+            </param>
+            <param type="String"  require="1" name="InvoiceItemPrice">
+                <pattern>^.{0,4096}$</pattern>
+            </param>
+            <param type="String"  require="1" name="InvoiceItemTaxType">
+                <pattern>^.{0,4096}$</pattern>
+            </param>
+            <param type="String"  require="1" name="InvoiceRemark" urlencode="1">
+                <pattern>^.{0,4096}$</pattern>
+            </param>
+            <param type="Int"  require="1" name="DelayDay">
+                <mode>BETWEEN</mode>
+                <maximum>15</maximum>
+                <minimal>0</minimal>
+            </param>
+            <param type="Opt"  require="1" name="InvType">
+                <option>07</option>
+                <option>08</option>
+            </param>
+        </condparam>
+        <option>N</option>
+      </param>
+      <param  type="Opt"  require="0" name="HoldTradeAMT">
+        <option>0</option>
+        <option>1</option>
+      </param>
+      <param  type="Opt"  require="1" name="EncryptType">
+        <option>1</option>
+      </param>
+      <param type="String"  require="0" name="CustomField1">
+          <pattern>^.{0,50}$</pattern>
+      </param>
+      <param type="String"  require="0" name="CustomField2">
+          <pattern>^.{0,50}$</pattern>
+      </param>
+      <param type="String"  require="0" name="CustomField3">
+          <pattern>^.{0,50}$</pattern>
+      </param>
+      <param type="String"  require="0" name="CustomField4">
+          <pattern>^.{0,50}$</pattern>
+      </param>
+    </Parameters>
+  </AioCheckOut>
+  <QueryTradeInfo>
+    <ServiceAddress>
+        <url type="Production">https://payment.ecpay.com.tw/Cashier/QueryTradeInfo/V5</url>
+        <url type="Test">https://payment-stage.ecpay.com.tw/Cashier/QueryTradeInfo/V5</url>
+    </ServiceAddress>
+    <Config>
+        <switchparam>
+        </switchparam>
+        <optparam>
+        </optparam>
+    </Config>
+    <Parameters>
+      <param  type="String"  require="1" name="MerchantID">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="MerchantTradeNo">
+        <pattern>^\w{4,20}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="TimeStamp">
+        <pattern>^\d{10}$</pattern>
+      </param>
+      <param  type="String"  require="0" name="PlatformID">
+        <pattern>^(\d{7,10}|)$</pattern>
+      </param>
+    </Parameters>
+  </QueryTradeInfo>
+
+  <QueryCreditCardPeriodInfo>
+    <ServiceAddress>
+        <url type="Production">https://payment.ecpay.com.tw/Cashier/QueryCreditCardPeriodInfo</url>
+        <url type="Test">https://payment-stage.ecpay.com.tw/Cashier/QueryCreditCardPeriodInfo</url>
+    </ServiceAddress>
+    <Config>
+        <switchparam>
+        </switchparam>
+        <optparam>
+        </optparam>
+    </Config>
+    <Parameters>
+      <param  type="String"  require="1" name="MerchantID">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="MerchantTradeNo">
+        <pattern>^\w{4,20}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="TimeStamp">
+        <pattern>^\d{10}$</pattern>
+      </param>
+    </Parameters>
+  </QueryCreditCardPeriodInfo>
+
+  <DoAction>
+    <ServiceAddress>
+        <url type="Production">https://payment.ecpay.com.tw/CreditDetail/DoAction</url>
+        <url type="Test">https://payment-stage.ecpay.com.tw/CreditDetail/DoAction</url>
+    </ServiceAddress>
+    <Config>
+        <switchparam>
+        </switchparam>
+        <optparam>
+        </optparam>
+    </Config>
+    <Parameters>
+      <param  type="String"  require="1" name="MerchantID">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="MerchantTradeNo">
+        <pattern>^\w{4,20}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="TradeNo">
+        <pattern>^\w{4,20}$</pattern>
+      </param>
+      <param  type="Opt"  require="1" name="Action">
+        <option>C</option>
+        <option>R</option>
+        <option>E</option>
+        <option>N</option>
+      </param>
+      <param  type="Int"  require="1" name="TotalAmount">
+        <mode>GE</mode> <!--BETWEEN, GE, LE, EXCLUDE  -->
+        <maximum></maximum>
+        <minimal>1</minimal>
+      </param>
+      <param  type="String"  require="0" name="PlatformID">
+        <pattern>^(\d{7,10}|)$</pattern>
+      </param>
+    </Parameters>
+  </DoAction>
+
+  <Capture>
+    <ServiceAddress>
+        <url type="Production">https://payment.ecpay.com.tw/Cashier/Capture</url>
+        <url type="Test">https://payment-stage.ecpay.com.tw/Cashier/Capture</url>
+    </ServiceAddress>
+    <Config>
+        <switchparam>
+        </switchparam>
+        <optparam>
+        </optparam>
+    </Config>
+    <Parameters>
+      <param  type="String"  require="1" name="MerchantID">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="MerchantTradeNo">
+        <pattern>^\w{4,20}$</pattern>
+      </param>
+      <param  type="Int"  require="1" name="CaptureAMT">
+        <mode>GE</mode> <!--BETWEEN, GE, LE, EXCLUDE  -->
+        <maximum></maximum>
+        <minimal>0</minimal>
+      </param>
+      <param  type="Int"  require="1" name="UserRefundAMT">
+        <mode>GE</mode> <!--BETWEEN, GE, LE, EXCLUDE  -->
+        <maximum></maximum>
+        <minimal>0</minimal>
+      </param>
+      <param  type="String"  require="0" name="PlatformID">
+        <pattern>^(\d{7,10}|)$</pattern>
+      </param>
+      <param  type="String"  require="0" name="Remark">
+        <pattern>^.{0,30}$</pattern>
+      </param>
+    </Parameters>
+  </Capture>
+
+  <TradeNoAio>
+    <ServiceAddress>
+        <url type="Production">https://vendor.ecpay.com.tw/PaymentMedia/TradeNoAio</url>
+        <url type="Test">https://vendor-stage.ecpay.com.tw/PaymentMedia/TradeNoAio</url>
+    </ServiceAddress>
+    <Config>
+        <switchparam>
+        </switchparam>
+        <optparam>
+        </optparam>
+    </Config>
+    <Parameters>
+      <param  type="String"  require="1" name="MerchantID">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
+      <param  type="Opt"  require="1" name="DateType">
+        <option>2</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </param>
+      <param  type="String"  require="1" name="BeginDate">
+        <pattern>^\d{4}-\d{2}-\d{2}</pattern>
+      </param>
+      <param  type="String"  require="1" name="EndDate">
+        <pattern>^\d{4}-\d{2}-\d{2}</pattern>
+      </param>
+      <param  type="Opt"  require="0" name="PaymentType">
+        <option>01</option>
+        <option>02</option>
+        <option>03</option>
+        <option>04</option>
+        <option>07</option>
+        <option>08</option>
+        <option>09</option>
+      </param>
+      <param  type="Opt"  require="0" name="PlatformStatus">
+        <option>1</option>
+        <option>2</option>
+      </param>
+      <param  type="Opt"  require="0" name="PaymentStatus">
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+      </param>
+      <param  type="Opt"  require="0" name="AllocateStatus">
+        <option>0</option>
+        <option>1</option>
+      </param>
+      <param  type="Opt"  require="1" name="MediaFormated">
+        <option>0</option>
+        <option>1</option>
+      </param>
+    </Parameters>
+  </TradeNoAio>
+
+  <QueryTradeV2>
+    <ServiceAddress>
+        <url type="Production">https://payment.ecpay.com.tw/CreditDetail/QueryTrade/V2</url>
+        <url type="Test">https://payment-stage.ecpay.com.tw/CreditDetail/QueryTrade/V2</url>
+    </ServiceAddress>
+    <Config>
+        <switchparam>
+        </switchparam>
+        <optparam>
+        </optparam>
+    </Config>
+    <Parameters>
+      <param  type="String"  require="1" name="MerchantID">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="CreditRefundId">
+        <pattern>^\w{4,20}$</pattern>
+      </param>
+      <param  type="Int"  require="1" name="CreditAmount">
+        <mode>GE</mode>
+        <maximum></maximum>
+        <minimal>1</minimal>
+      </param>
+      <param  type="String"  require="1" name="CreditCheckCode">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
+    </Parameters>
+  </QueryTradeV2>
+
+  <FundingReconDetail>
+    <ServiceAddress>
+        <url type="Production">https://payment.ecpay.com.tw/CreditDetail/FundingReconDetail</url>
+        <url type="Test">https://payment-stage.ecpay.com.tw/CreditDetail/FundingReconDetail</url>
+    </ServiceAddress>
+    <Config>
+        <switchparam>
+        </switchparam>
+        <optparam>
+        </optparam>
+    </Config>
+    <Parameters>
+      <param  type="String"  require="1" name="MerchantID">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
+      <param  type="Opt"  require="1" name="PayDateType">
+        <option>fund</option>
+        <option>close</option>
+        <option>enter</option>
+      </param>
+      <param  type="String"  require="1" name="StartDate">
+        <pattern>^\d{4}-\d{2}-\d{2}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="EndDate">
+        <pattern>^\d{4}-\d{2}-\d{2}$</pattern>
+      </param>
+    </Parameters>
+  </FundingReconDetail>
+
+  <CreateServerOrder>
+    <ServiceAddress>
+    	<url type="Production">https://payment.ecpay.com.tw/ApplePay/CreateServerOrder/V2</url>
+    	<url type="Test">https://payment-stage.ecpay.com.tw/ApplePay/CreateServerOrder/V2</url>
+    </ServiceAddress>
+    <Config>
+    	<switchparam>
+    	</switchparam>
+    </Config>
+    <Parameters>
+      <param type="String" require="1" name="MerchantID">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
+      <param type="String" require="1" name="MerchantTradeNo">
+        <pattern>^\w{4,20}$</pattern>
+      </param>
+      <param type="String" require="1" name="MerchantTradeDate">
+        <pattern>^\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}$</pattern>
+      </param>
+      <param type="Int" require="1" name="TotalAmount">
+        <mode>GE</mode> <!-- BETWEEN, GE, LE, EXCLUDE -->
+        <maximum></maximum>
+        <minimal>1</minimal>
+      </param>
+      <param type="String" require="1" name="CurrencyCode">
+        <pattern>^\w{2,20}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="ItemName">
+        <pattern>^.{0,200}$</pattern>
+      </param>
+      <param type="String"  require="1" name="PlatformID">
+        <pattern>^(\d{7,10}|)$</pattern>
+      </param>
+      <param  type="String"  require="1" name="TradeDesc">
+        <pattern>^.{0,200}$</pattern>
+      </param>
+      <param  type="Opt"  require="1" name="TradeType">
+        <option>1</option> <!-- In App -->
+        <option>2</option> <!-- On the Web -->
+      </param>
+      <param type="String" require="1" name="PaymentToken">
+        <pattern>.</pattern>
+      </param>
+    </Parameters>
+  </CreateServerOrder>
+</ECPayPayment>
