@@ -21,15 +21,14 @@
 
 ## 3. 使用教學
   - 使用者文件放置於Doc資料夾內，可供參閱
-  - [綠界開發者專區]有詳細的教學說明及文件，並有線上模擬範例
+  
 
 
 ## 4. 聯絡我們
-  - 綠界技術客服信箱: techsupport@greenworld.com.tw
+  - 綠界技術客服信箱: techsupport@ecpay.com.tw
 
 
 
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
-   [綠界開發者專區]: <https://developers.ecpay.com.tw/>
