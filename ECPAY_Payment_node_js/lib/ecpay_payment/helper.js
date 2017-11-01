@@ -1,15 +1,12 @@
 /**
  * Created by ying.wu on 2017/6/12.
  */
-const fs = require('fs');
-const et = require('elementtree');
 const crypto = require('crypto');
 const url = require('url');
 const querystring = require('querystring');
 const http = require('http');
 const https = require('https');
 
-// const EventEmitter = require('events').EventEmitter;
 
 class APIHelper {
     constructor(options){
@@ -133,9 +130,9 @@ class APIHelper {
             throw new Error("Only GET & POST method are available.");
         }
 
-        var target_url = url.parse(api_url);
-        var postData = querystring.stringify(payload);
-        var http_op;
+        const target_url = url.parse(api_url),
+          postData = querystring.stringify(payload)
+        let http_op;
 
         if (target_url.protocol === 'https:'){
             http_op = https;
@@ -145,7 +142,7 @@ class APIHelper {
             throw new Error("Only http & https protocol are available.");
         }
 
-        var options = {
+        const options = {
             protocol: target_url['protocol'],
             hostname: target_url['hostname'],
             path: target_url['path'],
@@ -154,7 +151,7 @@ class APIHelper {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Content-Length': Buffer.byteLength(postData),
             }
-        };
+        }
 
         return new Promise((resolve, reject) => {
 
@@ -183,7 +180,7 @@ class APIHelper {
         });
     };
     gen_html_post_form(act, id, parameters, input_typ='hidden', submit=true){
-        var html = "<form id=\""+ id +"\" action=\""+ act + "\" method=\"post\">";
+        let html = "<form id=\""+ id +"\" action=\""+ act + "\" method=\"post\">";
         Object.keys(parameters).forEach(function (key) {
             html += "<input type=\""+ input_typ +"\" name=\"" + key + "\" id=\"" + key + "\" value=\"" + parameters[key] + "\" />";
         });
@@ -209,12 +206,7 @@ class APIHelper {
        } else if (chkmac.length === 32) {
            val = this.gen_chk_mac_value(rtn_obj, 0);
        }
-       if (chkmac === val){
-           return true
-       } else {
-           return false
-       }
-
+       return chkmac === val
     }
 
 }
