@@ -52,14 +52,14 @@ let inv_params = {
 };
 
 // 定期定額相關參數
-let period_params = {
+const period_params = {
     PeriodAmount: '50',
     PeriodType: 'M',
     Frequency: '1',
     ExecTimes: '2',
     PeriodReturnURL: 'http://192.168.0.1'
-};
-
-let create = new ecpay_payment();
-let htm = create.payment_client.aio_check_out_credit_period(period_info = period_params, parameters = base_param, invoice = inv_params);
+},
+  options = require('../conf/config-example'),
+  create = new ecpay_payment(options),
+  htm = create.payment_client.aio_check_out_credit_period(period_info = period_params, parameters = base_param, invoice = inv_params);
 console.log(htm);
