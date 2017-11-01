@@ -12,8 +12,8 @@ const http = require('http');
 const https = require('https');
 
 class ECpayExecRefundAndGrant{
-    constructor(){
-        this.helper = new helper();
+    constructor(options){
+        this.helper = new helper(options);
         // this.verify_act_api = new verify.ActParamVerify();
     }
 

@@ -12,8 +12,8 @@ const http = require('http');
 const https = require('https');
 
 class ECpayQueryClient{
-    constructor(){
-        this.helper = new helper();
+    constructor(options){
+        this.helper = new helper(options);
         // this.verify_query_api = new verify.QueryParamVerify();
     }
 

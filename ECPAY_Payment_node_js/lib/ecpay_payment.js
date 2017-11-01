@@ -7,11 +7,11 @@ const query_client = require('./ecpay_payment/query_client.js');
 const exec_grant_refund = require('./ecpay_payment/exec_grant_refund.js');
 
 class ECPayPayment {
-    constructor(){
+    constructor(options){
         this.version = new version();
-        this.payment_client = new payment_client();
-        this.query_client = new query_client();
-        this.exec_grant_refund = new exec_grant_refund();
+        this.payment_client = new payment_client(options);
+        this.query_client = new query_client(options);
+        this.exec_grant_refund = new exec_grant_refund(options);
     }
 }
 module.exports = ECPayPayment;
