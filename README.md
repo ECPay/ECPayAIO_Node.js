@@ -11,7 +11,7 @@
     - 超商代碼
     - 超商條碼
     - Apple Pay
-    - Android Pay
+    - Google Pay
 
 
 ## 2. 安裝環境
