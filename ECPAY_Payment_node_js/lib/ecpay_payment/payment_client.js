@@ -32,6 +32,13 @@ class ECpayPaymentClient{
         return html;
     }
 
+    aio_check_out_googlepay(parameters, invoice={}){
+        let unsupport = [];
+        this._aiochkout_base_proc(parameters, invoice, unsupport, 'GooglePay');
+        let html = this._aiochkout_pos_proc(parameters);
+        return html;
+    }
+
     aio_check_out_credit_divide(parameters, invoice={}, installment, amount){
         let unsupport = ['HoldTradeAMT', 'IgnorePayment', 'Redeem', 'PeriodAmount', 'PeriodType', 'Frequency', 'ExecTimes', 'PeriodReturnURL'];
         this._aiochkout_base_proc(parameters, invoice, unsupport, 'Credit');
