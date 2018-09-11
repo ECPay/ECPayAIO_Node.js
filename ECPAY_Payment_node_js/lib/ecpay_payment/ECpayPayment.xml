@@ -317,10 +317,6 @@
         </condparam>
         <option>N</option>
       </param>
-      <param  type="Opt"  require="0" name="HoldTradeAMT">
-        <option>0</option>
-        <option>1</option>
-      </param>
       <param  type="Opt"  require="1" name="EncryptType">
         <option>1</option>
       </param>

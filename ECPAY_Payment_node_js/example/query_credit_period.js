@@ -6,6 +6,7 @@ const ecpay_payment = require('../lib/ecpay_payment.js');
 //若要測試非必帶參數請將base_param內註解的參數依需求取消註解 //
 let base_param = {
     MerchantTradeNo: 'PLEASE MODIFY', //請帶20碼uid, ex: f0a0d7e9fae1bb72bc93
+
 };
 
 let query = new ecpay_payment();

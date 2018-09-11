@@ -40,7 +40,7 @@ class ECpayPaymentClient{
     }
 
     aio_check_out_credit_divide(parameters, invoice={}, installment, amount){
-        let unsupport = ['HoldTradeAMT', 'IgnorePayment', 'Redeem', 'PeriodAmount', 'PeriodType', 'Frequency', 'ExecTimes', 'PeriodReturnURL'];
+        let unsupport = ['IgnorePayment', 'Redeem', 'PeriodAmount', 'PeriodType', 'Frequency', 'ExecTimes', 'PeriodReturnURL'];
         this._aiochkout_base_proc(parameters, invoice, unsupport, 'Credit');
         parameters['CreditInstallment'] = installment;
         if (parseInt(parameters['TotalAmount']) !== parseInt(amount)){
@@ -52,7 +52,7 @@ class ECpayPaymentClient{
 
     aio_check_out_credit_period(period_info, parameters, invoice={}){
         // 'PeriodAmount', 'PeriodType', 'Frequency', 'ExecTimes', 'PeriodReturnURL'
-        let unsupport = ['HoldTradeAMT', 'IgnorePayment', 'Redeem', 'CreditInstallment', 'InstallmentAmount'];
+        let unsupport = ['IgnorePayment', 'Redeem', 'CreditInstallment', 'InstallmentAmount'];
         this._aiochkout_base_proc(parameters, invoice, unsupport, 'Credit');
         if (period_info.constructor === Object){
             let period_args = ['PeriodAmount', 'PeriodType', 'Frequency', 'ExecTimes', 'PeriodReturnURL'];
@@ -149,7 +149,7 @@ class ECpayPaymentClient{
 
     _aiochkout_base_proc(params, inv, unsupport_param, pay_method){
         if (params.constructor === Object){
-            // Remove HoldTradeAMT, IgnorePayment
+            // Remove  IgnorePayment
             if (unsupport_param.constructor === Array){
                 unsupport_param.forEach(function (pa) {
                    delete params[pa];
