@@ -5,12 +5,12 @@ const ecpay_payment = require('../lib/ecpay_payment.js');
 //參數值為[PLEASE MODIFY]者，請在每次測試時給予獨特值
 //若要測試非必帶參數請將base_param內註解的參數依需求取消註解 //
 let base_param = {
-    MerchantTradeNo: 'f0a0d7e9fabauy111', //請帶20碼uid, ex: f0a0d7e9fae1bb72bc93
+    MerchantTradeNo: 'f0a0sa9fabkkuy111', //請帶20碼uid, ex: f0a0d7e9fae1bb72bc93
     MerchantTradeDate: '2018/06/13 15:45:30', //ex: 2017/02/13 15:45:30
     TotalAmount: '100',
     TradeDesc: '測試交易描述',
     ItemName: '測試商品等',
-    ReturnURL: 'http://192.168.0.1',
+    ReturnURL: 'https://us-central1-qraft-app.cloudfunctions.net/dev-createSampleOrder',
     EncryptType:'1',
     // ChooseSubPayment: '',
     // OrderResultURL: 'http://192.168.0.1/payment_result',
@@ -27,7 +27,7 @@ let base_param = {
 
 // 若要測試開立電子發票，請將inv_params內的"所有"參數取消註解 //
 let inv_params = {
-     RelateNumber: 'SJDFJGH20FJIL97Gj11VOMSfK',  //請帶30碼uid ex: SJDFJGH24FJIL97G73653XM0VOMS4K
+     RelateNumber: 'SJDFJas97Gj11VOMSfK',  //請帶30碼uid ex: SJDFJGH24FJIL97G73653XM0VOMS4K
      CustomerID: '',  //會員編號
      CustomerIdentifier: '',   //統一編號
      CustomerName: '測試買家',
