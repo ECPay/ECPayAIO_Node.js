@@ -16,7 +16,7 @@
 
 ## 2. 安裝環境
   - node-v6.11.0-x64  以上
-  - ECMAScipt6
+  - ECMA Script6
  
 
 ## 3. 使用教學
