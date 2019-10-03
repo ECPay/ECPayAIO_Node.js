@@ -31,13 +31,13 @@ class ECpayPaymentClient{
         let html = this._aiochkout_pos_proc(parameters);
         return html;
     }
-
-    aio_check_out_googlepay(parameters, invoice={}){
+    //<!--2019/09/30暫時關閉GooglePay付款方式-->
+    /*aio_check_out_googlepay(parameters, invoice={}){
         let unsupport = [];
         this._aiochkout_base_proc(parameters, invoice, unsupport, 'GooglePay');
         let html = this._aiochkout_pos_proc(parameters);
         return html;
-    }
+    }*/
 
     aio_check_out_credit_divide(parameters, invoice={}, installment, amount){
         let unsupport = ['IgnorePayment', 'Redeem', 'PeriodAmount', 'PeriodType', 'Frequency', 'ExecTimes', 'PeriodReturnURL'];

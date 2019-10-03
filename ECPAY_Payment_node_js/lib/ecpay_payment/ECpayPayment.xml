@@ -45,11 +45,11 @@
       </param>
       <param  type="Opt"  require="1" name="ChoosePayment">
         <option>ALL</option>
-        <option>GooglePay</option>
-        <option>Credit</option>
-        <condparam owner="Credit">
-        <!--Reqirement checking of following credit card related sub parameter would be handled in
-        client.rb due to different credit payment type -->
+          <!-- <option>GooglePay</option>--><!--2019/09/30暫時關閉GooglePay付款方式-->
+          <option>Credit</option>
+          <condparam owner="Credit">
+          <!--Reqirement checking of following credit card related sub parameter would be handled in
+          client.rb due to different credit payment type -->
             <param type="Opt"  require="0" name="Language">
                 <option>ENG</option>
                 <option>KOR</option>
