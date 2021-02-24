@@ -5,6 +5,7 @@ const ecpay_payment = require('../lib/ecpay_payment.js')
 //參數值為[PLEASE MODIFY]者，請在每次測試時給予獨特值
 //若要測試非必帶參數請將base_param內註解的參數依需求取消註解 //
 let base_param = {
+
   MerchantTradeNo: 'PLEASE MODIFY', //請帶20碼uid, ex: f0a0d7e9fae1bb72bc93
   MerchantTradeDate: 'PLEASE MODIFY', //ex: 2017/02/13 15:45:30
   TotalAmount: '100',
@@ -24,6 +25,7 @@ let base_param = {
   // CustomField3: '',
   // CustomField4: ''
 }
+
 
 // 若要測試開立電子發票，請將inv_params內的"所有"參數取消註解 //
 let inv_params = {

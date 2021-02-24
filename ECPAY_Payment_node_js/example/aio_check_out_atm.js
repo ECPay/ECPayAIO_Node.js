@@ -25,6 +25,7 @@ let base_param = {
   // CustomField4: ''
 }
 
+
 // 若要測試開立電子發票，請將inv_params內的"所有"參數取消註解 //
 let inv_params = {
   // RelateNumber: 'PLEASE MODIFY',  //請帶30碼uid ex: SJDFJGH24FJIL97G73653XM0VOMS4K
@@ -51,6 +52,7 @@ let inv_params = {
   // InvType: '07'
 }
 
+
 const pay_info_url = 'http://192.168.0.1',
   exp = '7',
   cli_redir_url = 'http://192.168.0.1/payment_result',
@@ -58,3 +60,4 @@ const pay_info_url = 'http://192.168.0.1',
   create = new ecpay_payment(options),
   htm = create.payment_client.aio_check_out_atm(parameters = base_param, url_return_payinfo = pay_info_url, exp_period = exp, client_redirect = cli_redir_url, invoice = inv_params)
 console.log(htm)
+

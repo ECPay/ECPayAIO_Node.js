@@ -1,3 +1,4 @@
+
 /**
  * Created by ying.wu on 2017/6/27.
  */
@@ -54,3 +55,4 @@ const options = require('../conf/config-example'),
   create = new ecpay_payment(options),
   htm = create.payment_client.aio_check_out_all(parameters = base_param, invoice = inv_params)
 console.log(htm)
+

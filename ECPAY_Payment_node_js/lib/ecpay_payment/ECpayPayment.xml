@@ -45,11 +45,11 @@
       </param>
       <param  type="Opt"  require="1" name="ChoosePayment">
         <option>ALL</option>
-        <option>AndroidPay</option>
-        <option>Credit</option>
-        <condparam owner="Credit">
-        <!--Reqirement checking of following credit card related sub parameter would be handled in
-        client.rb due to different credit payment type -->
+          <!-- <option>GooglePay</option>--><!--2019/09/30暫時關閉GooglePay付款方式-->
+          <option>Credit</option>
+          <condparam owner="Credit">
+          <!--Reqirement checking of following credit card related sub parameter would be handled in
+          client.rb due to different credit payment type -->
             <param type="Opt"  require="0" name="Language">
                 <option>ENG</option>
                 <option>KOR</option>
@@ -70,6 +70,7 @@
             <param type="Opt"  require="0" name="UnionPay" category="OneTime">
                 <option>0</option>
                 <option>1</option>
+				<option>2</option>
             </param>
             <param type="String"  require="0" name="CreditInstallment" category="Divide">
                 <pattern>^(3|6|12|18|24){1}(,3|,6|,12|,18|,24){0,4}$</pattern>
@@ -121,8 +122,8 @@
         <option>CVS</option>
         <condparam owner="CVS">
             <param type="Int"  require="0" name="StoreExpireDate">
-                <mode>BETWEEN</mode>
-                <maximum>99</maximum>
+                <mode>GE</mode> <!--BETWEEN, GE, LE, EXCLUDE  -->
+                <maximum></maximum>
                 <minimal>1</minimal>
             </param>
             <param type="String"  require="0" name="Desc_1">
@@ -277,8 +278,8 @@
             	<pattern>.{0,16}</pattern>
             </param>
             <param type="Opt"  require="1" name="Donation">
+                <option>0</option>
                 <option>1</option>
-                <option>2</option>
             </param>
             <param type="String"  require="1" name="LoveCode">
                 <pattern>^([Xx]\d{2,6}|\d{3,7}|)$</pattern>
@@ -316,10 +317,6 @@
             </param>
         </condparam>
         <option>N</option>
-      </param>
-      <param  type="Opt"  require="0" name="HoldTradeAMT">
-        <option>0</option>
-        <option>1</option>
       </param>
       <param  type="Opt"  require="1" name="EncryptType">
         <option>1</option>
