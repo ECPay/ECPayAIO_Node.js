@@ -2,7 +2,7 @@
   "name": "ecpay_payment_nodejs",
   "version": "1.0.0",
   "description": "綠界全方位金流串接用SDK",
-  "main": "ecpay_payment.js",
+  "main": "index.js",
   "dependencies": {
     "elementtree": "^0.1.7",
     "iconv-lite": "^0.4.18",

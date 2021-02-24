@@ -1,36 +1,25 @@
 /**
  * Created by ying.wu on 2017/6/12.
  */
-const fs = require('fs');
-const et = require('elementtree');
 const crypto = require('crypto');
 const url = require('url');
 const querystring = require('querystring');
 const http = require('http');
 const https = require('https');
 
-// const EventEmitter = require('events').EventEmitter;
 
 class APIHelper {
-    constructor(){
-        this.cont = fs.readFileSync(__dirname + '/../../conf/payment_conf.xml').toString();
-        this.cont_xml = et.parse(this.cont);
-        this.active_merc_info = this.cont_xml.findtext('./MercProfile');
-        this.op_mode = this.cont_xml.findtext('./OperatingMode');
-        this.contractor_stat = this.cont_xml.findtext('./IsProjectContractor');
-        this.merc_info = this.cont_xml.findall(`./MerchantInfo/MInfo/[@name="${this.active_merc_info}"]`);
-        this.ignore_payment = [];
-        this.ignore_info = this.cont_xml.findall('./IgnorePayment//Method');
-        for(let t = 0, l = this.ignore_info.length; t < l; t++) {
-            this.ignore_payment.push(this.ignore_info[t].text);
+    constructor(options){
+        this.op_mode = options.OperationMode
+        this.contractor_stat = options.IsProjectContractor
+        if (!options.MercProfile || !options.MercProfile.MerchantID || !options.MercProfile.HashIV || !options.MercProfile.HashKey){
+            throw new Error('Please specify the MercProfile')
         }
-        if (this.merc_info !== []) {
-            this.merc_id = this.merc_info[0].findtext('./MerchantID');
-            this.hkey = this.merc_info[0].findtext('./HashKey');
-            this.hiv = this.merc_info[0].findtext('./HashIV');
-        } else {
-            throw new Error(`Specified merchant setting name (${this.active_merc_info}) not found.`);
-        }
+        this.merc_info = options.MercProfile
+        this.ignore_payment = options.IgnorePayment
+        this.merc_id = this.merc_info.MerchantID
+        this.hkey = this.merc_info.HashKey
+        this.hiv = this.merc_info.HashIV
         this.date = new Date();
     }
     get_mercid(){
@@ -46,13 +35,7 @@ class APIHelper {
         return this.date.getTime().toString().slice(0, 10);
     }
     is_contractor(){
-        if (this.contractor_stat === 'N') {
-            return false
-        } else if (this.contractor_stat === 'Y') {
-            return true
-        } else {
-            throw new Error("Unknown [IsProjectContractor] configuration.");
-        }
+        return this.contractor_stat
     }
     urlencode_dot_net(raw_data, case_tr='DOWN'){
         if (typeof raw_data === 'string') {
@@ -147,9 +130,9 @@ class APIHelper {
             throw new Error("Only GET & POST method are available.");
         }
 
-        var target_url = url.parse(api_url);
-        var postData = querystring.stringify(payload);
-        var http_op;
+        const target_url = url.parse(api_url),
+          postData = querystring.stringify(payload)
+        let http_op;
 
         if (target_url.protocol === 'https:'){
             http_op = https;
@@ -159,7 +142,7 @@ class APIHelper {
             throw new Error("Only http & https protocol are available.");
         }
 
-        var options = {
+        const options = {
             protocol: target_url['protocol'],
             hostname: target_url['hostname'],
             path: target_url['path'],
@@ -168,7 +151,7 @@ class APIHelper {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Content-Length': Buffer.byteLength(postData),
             }
-        };
+        }
 
         return new Promise((resolve, reject) => {
 
@@ -197,7 +180,7 @@ class APIHelper {
         });
     };
     gen_html_post_form(act, id, parameters, input_typ='hidden', submit=true){
-        var html = "<form id=\""+ id +"\" action=\""+ act + "\" method=\"post\">";
+        let html = "<form id=\""+ id +"\" action=\""+ act + "\" method=\"post\">";
         Object.keys(parameters).forEach(function (key) {
             html += "<input type=\""+ input_typ +"\" name=\"" + key + "\" id=\"" + key + "\" value=\"" + parameters[key] + "\" />";
         });
@@ -223,12 +206,7 @@ class APIHelper {
        } else if (chkmac.length === 32) {
            val = this.gen_chk_mac_value(rtn_obj, 0);
        }
-       if (chkmac === val){
-           return true
-       } else {
-           return false
-       }
-
+       return chkmac === val
     }
 
 }
