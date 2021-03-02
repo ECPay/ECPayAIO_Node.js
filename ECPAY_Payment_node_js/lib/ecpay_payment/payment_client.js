@@ -11,8 +11,8 @@ const http = require('http');
 const https = require('https');
 
 class ECpayPaymentClient{
-    constructor(){
-        this.helper = new helper();
+    constructor(options){
+        this.helper = new helper(options);
         this.verify_aiochkout = new verify.AioCheckOutParamVerify();
     }
 
