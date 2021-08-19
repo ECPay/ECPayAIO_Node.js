@@ -17,6 +17,7 @@
 ## 2. 安裝環境
   - node-v6.11.0-x64  以上
   - ECMA Script6
+  - npm install ecpay_aio_nodejs
  
 
 ## 3. 使用教學
