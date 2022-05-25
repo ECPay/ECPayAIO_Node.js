@@ -54,8 +54,7 @@ let inv_params = {
 }
 
 const inst = '12', //分期期數
-  amt = 100, //分期總金額
   options = require('../conf/config-example')
 create = new ecpay_payment(options),
-  htm = create.payment_client.aio_check_out_credit_divide(parameters = base_param, invoice = inv_params, installment = inst, amount = amt)
+  htm = create.payment_client.aio_check_out_credit_divide(parameters = base_param, invoice = inv_params, installment = inst)
 console.log(htm)

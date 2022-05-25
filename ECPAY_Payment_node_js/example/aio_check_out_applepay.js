@@ -53,5 +53,5 @@ let inv_params = {
 }
 const options = require('../conf/config-example'),
   create = new ecpay_payment(options),
-  htm = create.payment_client.aio_check_out_credit_onetime(parameters = base_param, invoice = inv_params)
+  htm = create.payment_client.aio_check_out_applepay(parameters = base_param, invoice = inv_params)
 console.log(htm)

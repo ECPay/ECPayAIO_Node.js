@@ -24,7 +24,12 @@ class ECpayPaymentClient{
         let html = this._aiochkout_pos_proc(parameters);
         return html;
     }
-
+    aio_check_out_applepay(parameters, invoice={}){
+        let unsupport = [];
+        this._aiochkout_base_proc(parameters, invoice, unsupport, 'ApplePay');
+        let html = this._aiochkout_pos_proc(parameters);
+        return html;
+    }
     aio_check_out_credit_onetime(parameters, invoice={}){
         let unsupport = [];
         this._aiochkout_base_proc(parameters, invoice, unsupport, 'Credit');
@@ -39,13 +44,10 @@ class ECpayPaymentClient{
         return html;
     }*/
 
-    aio_check_out_credit_divide(parameters, invoice={}, installment, amount){
+    aio_check_out_credit_divide(parameters, invoice={}, installment){
         let unsupport = ['IgnorePayment', 'Redeem', 'PeriodAmount', 'PeriodType', 'Frequency', 'ExecTimes', 'PeriodReturnURL'];
         this._aiochkout_base_proc(parameters, invoice, unsupport, 'Credit');
         parameters['CreditInstallment'] = installment;
-        if (parseInt(parameters['TotalAmount']) !== parseInt(amount)){
-            parameters['InstallmentAmount'] = amount;
-        }
         let html = this._aiochkout_pos_proc(parameters);
         return html;
     }

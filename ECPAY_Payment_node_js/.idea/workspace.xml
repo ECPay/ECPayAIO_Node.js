@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="409ed412-104a-48cf-bca2-7cb9a860bea1" name="Default" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,47 +33,44 @@
   </component>
   <component name="ProjectId" id="1Y11qkgWiS3fCqEwUV30d1NaNnc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="10.16.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.15.1" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.18.18" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/example" />
+    <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\AIOAPPLEPAY\ECPAY_Payment_node_js\example" />
       <recent name="C:\Users\snami.chen.ECPAY\Downloads\TLS1.0_TEST\ECPAY\Payment\ECPayAIO_Node.js-master\ECPayAIO_Node.js-master\ECPAY_Payment_node_js\example" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Node.js.query_credit_single.js">
+  <component name="RunManager" selected="Node.js.aio_check_out_credit_divide.js">
+    <configuration name="aio_check_out_applepay.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/example/aio_check_out_applepay.js" working-dir="$PROJECT_DIR$/example">
+      <method v="2" />
+    </configuration>
+    <configuration name="aio_check_out_credit_divide.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/example/aio_check_out_credit_divide.js" working-dir="$PROJECT_DIR$/example">
+      <method v="2" />
+    </configuration>
+    <configuration name="aio_check_out_credit_onetime.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/example/aio_check_out_credit_onetime.js" working-dir="$PROJECT_DIR$/example">
+      <method v="2" />
+    </configuration>
     <configuration name="aio_check_out_credit_period.js" type="NodeJSConfigurationType" temporary="true" path-to-js-file="aio_check_out_credit_period.js" working-dir="$PROJECT_DIR$/example">
       <method v="2" />
     </configuration>
-    <configuration name="create_server_order.js" type="NodeJSConfigurationType" temporary="true" path-to-js-file="create_server_order.js" working-dir="$PROJECT_DIR$/example">
-      <method v="2" />
-    </configuration>
-    <configuration name="query_credit_period.js" type="NodeJSConfigurationType" temporary="true" path-to-js-file="query_credit_period.js" working-dir="$PROJECT_DIR$/example">
-      <method v="2" />
-    </configuration>
     <configuration name="query_credit_single.js" type="NodeJSConfigurationType" temporary="true" path-to-js-file="query_credit_single.js" working-dir="$PROJECT_DIR$/example">
-      <method v="2" />
-    </configuration>
-    <configuration name="query_trade_info.js" type="NodeJSConfigurationType" temporary="true" path-to-js-file="query_trade_info.js" working-dir="$PROJECT_DIR$/example">
       <method v="2" />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp">
@@ -87,22 +83,23 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Node.js.create_server_order.js" />
-      <item itemvalue="Node.js.query_credit_period.js" />
       <item itemvalue="Node.js.query_credit_single.js" />
-      <item itemvalue="Node.js.query_trade_info.js" />
       <item itemvalue="Node.js.aio_check_out_credit_period.js" />
+      <item itemvalue="Node.js.aio_check_out_credit_onetime.js" />
+      <item itemvalue="Node.js.aio_check_out_applepay.js" />
+      <item itemvalue="Node.js.aio_check_out_credit_divide.js" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.query_credit_single.js" />
-        <item itemvalue="Node.js.query_credit_period.js" />
+        <item itemvalue="Node.js.aio_check_out_credit_divide.js" />
         <item itemvalue="Node.js.aio_check_out_credit_period.js" />
-        <item itemvalue="Node.js.query_trade_info.js" />
-        <item itemvalue="Node.js.create_server_order.js" />
+        <item itemvalue="Node.js.aio_check_out_applepay.js" />
+        <item itemvalue="Node.js.aio_check_out_credit_onetime.js" />
+        <item itemvalue="Node.js.query_credit_single.js" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -123,6 +120,8 @@
       <workItem from="1535074863516" duration="565000" />
       <workItem from="1535075466586" duration="6532000" />
       <workItem from="1582095480066" duration="179000" />
+      <workItem from="1653269186041" duration="1424000" />
+      <workItem from="1653271426241" duration="26000" />
     </task>
     <task id="LOCAL-00001" summary="fix AioCheckOut ATM Parameter Issue">
       <created>1499138360726</created>
@@ -172,20 +171,19 @@
     </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix AioCheckOut ATM Parameter Issue" />
@@ -194,5 +192,9 @@
     <MESSAGE value="fix TimeStamp delay error" />
     <MESSAGE value="fix example aio_capture leak arguments" />
     <option name="LAST_COMMIT_MESSAGE" value="fix example aio_capture leak arguments" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
