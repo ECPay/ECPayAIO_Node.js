@@ -12,7 +12,7 @@
     - 超商條碼
     - Apple Pay
     - Google Pay (須特別申請才能使用)(原Android Pay)
-
+  - 線上文件網址  https://developers.ecpay.com.tw/?p=2509
 
 ## 2. 安裝環境
   - node-v6.11.0-x64  以上
