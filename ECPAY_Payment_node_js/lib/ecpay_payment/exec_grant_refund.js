@@ -52,6 +52,10 @@ class ECpayExecRefundAndGrant{
             throw new ECpayError.ECpayInvalidParam(`Received parameter object must be a Object.`);
         }
     }
+	
+	 _get_curr_unix_time(){
+        return this.helper.get_curr_unixtime();
+    }
 
     _act_pos_proc(params, apiname){
         let verify_act_api = new verify.ActParamVerify(apiname);
