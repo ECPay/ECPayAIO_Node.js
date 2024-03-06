@@ -15,6 +15,9 @@
       <param  type="String"  require="1" name="MerchantID">
         <pattern>^\d{7,10}$</pattern>
       </param>
+	   <param  type="String"  require="1" name="PlatformID">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
       <param  type="String"  require="1" name="MerchantTradeNo">
         <pattern>^\w{4,20}$</pattern>
       </param>
