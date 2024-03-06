@@ -382,7 +382,7 @@
         <pattern>^\d{10}$</pattern>
       </param>
 	   <param  type="String"  require="1" name="PlatformID">
-        <pattern>^\d{7,10}$</pattern>
+        <pattern>^(\d{7,10}|)$</pattern>
       </param>
     </Parameters>
   </QueryCreditCardPeriodInfo>
