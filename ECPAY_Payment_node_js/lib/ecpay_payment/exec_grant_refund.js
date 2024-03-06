@@ -24,7 +24,7 @@ class ECpayExecRefundAndGrant{
     }
 	
 	creditcard_period_act(parameters){
-        this._query_base_proc(parameters);
+        this._act_base_proc(parameters);
         parameters['TimeStamp'] = (parseInt(this._get_curr_unix_time()) + 120).toString();
         let res = this._act_pos_proc(parameters, 'CreditCardPeriodAction');
         return res;
