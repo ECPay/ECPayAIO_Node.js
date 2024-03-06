@@ -426,7 +426,7 @@ class AioCheckOutParamVerify extends PaymentVerifyBase{
                     throw new ECpayError.ECpayInvoiceRuleViolate(`[CarruerNum] must be 2 alphabets and 14 numbers when [CarruerType] is 2.`);
                 }
             } else if (params['CarruerType'] === '3'){
-                if (params['CarruerNum'].match(new RegExp(/^\/[A-Za-z0-9\s+-]{7}$/)) === null){
+                if (params['CarruerNum'].match(new RegExp(/^\/[A-Za-z0-9\s+-.]{7}$/)) === null){
                     throw new ECpayError.ECpayInvoiceRuleViolate(`[CarruerNum] must start with '/' followed by 7 alphabet and number characters when [CarruerType] is 3.`);
                 }
             } else {
