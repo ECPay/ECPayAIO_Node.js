@@ -332,6 +332,7 @@
       </param>
     </Parameters>
   </AioCheckOut>
+  
   <QueryTradeInfo>
     <ServiceAddress>
         <url type="Production">https://payment.ecpay.com.tw/Cashier/QueryTradeInfo/V5</url>
@@ -358,7 +359,7 @@
       </param>
     </Parameters>
   </QueryTradeInfo>
-
+  
   <QueryCreditCardPeriodInfo>
     <ServiceAddress>
         <url type="Production">https://payment.ecpay.com.tw/Cashier/QueryCreditCardPeriodInfo</url>
@@ -384,7 +385,6 @@
         <pattern>^\d{7,10}$</pattern>
       </param>
     </Parameters>
-	
   </QueryCreditCardPeriodInfo>
 
   <DoAction>
