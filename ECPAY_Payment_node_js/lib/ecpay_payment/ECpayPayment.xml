@@ -380,10 +380,11 @@
       <param  type="String"  require="1" name="TimeStamp">
         <pattern>^\d{10}$</pattern>
       </param>
-    </Parameters>
-	 <param  type="String"  require="1" name="PlatformID">
+	   <param  type="String"  require="1" name="PlatformID">
         <pattern>^\d{7,10}$</pattern>
       </param>
+    </Parameters>
+	
   </QueryCreditCardPeriodInfo>
 
   <DoAction>
@@ -423,6 +424,39 @@
       </param>
     </Parameters>
   </DoAction>
+  
+  <CreditCardPeriodAction>
+    <ServiceAddress>
+        <url type="Production">https://payment.ecpay.com.tw/Cashier/CreditCardPeriodAction</url>
+        <url type="Test">https://payment-stage.ecpay.com.tw/Cashier/CreditCardPeriodAction</url>
+    </ServiceAddress>
+    <Config>
+        <switchparam>
+        </switchparam>
+        <optparam>
+        </optparam>
+    </Config>
+    <Parameters>
+      <param  type="String"  require="1" name="MerchantID">
+        <pattern>^\d{7,10}$</pattern>
+      </param>
+      <param  type="String"  require="1" name="MerchantTradeNo">
+        <pattern>^\w{4,20}$</pattern>
+      </param>     
+      <param  type="Opt"  require="1" name="Action">
+        <option>ReAuth</option>
+        <option>Cancel</option>
+      </param>
+      <param  type="Int"  require="1" name="TimeStamp">
+        <mode>GE</mode> <!--BETWEEN, GE, LE, EXCLUDE  -->
+        <maximum></maximum>
+        <minimal>1</minimal>
+      </param>
+      <param  type="String"  require="0" name="PlatformID">
+        <pattern>^(\d{7,10}|)$</pattern>
+      </param>
+    </Parameters>
+  </CreditCardPeriodAction>
 
   <Capture>
     <ServiceAddress>
