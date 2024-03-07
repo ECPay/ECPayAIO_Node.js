@@ -1,6 +1,6 @@
 {
   "name": "ecpay_aio_nodejs",
-  "version": "1.2.202403071",
+  "version": "1.2.2",
   "description": "綠界全方位金流串接用SDK",
   "main": "index.js",
   "dependencies": {
