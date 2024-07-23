@@ -327,7 +327,7 @@ class AioCheckOutParamVerify extends PaymentVerifyBase{
             Object.keys(ext_param).forEach(function (pa) {
                let val = params[pa];
                let related_required_param = ext_param[pa][val];
-               if (related_required_param !== undefined && related_required_param !== []){
+               if (related_required_param !== undefined && related_required_param.length > 0){
                    related_required_param.forEach(function (e) {
                        if (!Object.keys(params).includes(e)){
                            throw new ECpayError.ECpayInvalidParam(`Lack required parameter [${e}] when [${pa}] is set to [${val}].`);
@@ -468,7 +468,7 @@ class AioCheckOutParamVerify extends PaymentVerifyBase{
                     let item_tax = params['InvoiceItemTaxType'].split('|');
                     let aval_tax_type = ['1', '2', '3'];
                     let vio_tax_t = item_tax - aval_tax_type;
-                    if (vio_tax_t === []){
+                    if (Array.isArray(vio_tax_t) && vio_tax_t.length === 0){
                         throw new ECpayError.ECpayInvoiceRuleViolate(`Illegal [InvoiceItemTaxType]: ${vio_tax_t}`);
                     }
                     if (params['TaxType'] === '9'){
