@@ -88,7 +88,7 @@ class APIHelper {
            raw = JSON.stringify(od).toLowerCase().replace(/":"/g, '=');
            raw = raw.replace(/","|{"|"}/g, '&');
            raw = this.urlencode_dot_net(`HashKey=${this.hkey}${raw}HashIV=${this.hiv}`);
-           console.log(raw);
+           // console.log(raw);
 
            let chksum = "";
            switch (mode){
@@ -156,7 +156,7 @@ class APIHelper {
         return new Promise((resolve, reject) => {
 
             const req = http_op.request(options, (res) => {
-                console.log(`STATUS: ${res.statusCode}`);
+                // console.log(`STATUS: ${res.statusCode}`);
                 // console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                 // res.setEncoding('utf8');
                 const body = [];
