@@ -20,8 +20,12 @@ class APIHelper {
         this.merc_id = this.merc_info.MerchantID
         this.hkey = this.merc_info.HashKey
         this.hiv = this.merc_info.HashIV
-        this.date = new Date();
     }
+
+    get date(){
+        return new Date()      
+    }
+    
     get_mercid(){
         return this.merc_id;
     }
